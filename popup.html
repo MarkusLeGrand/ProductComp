@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>BoucherCompare</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="bc-header">
+      <div class="bc-header-top">
+        <div class="bc-logo">BoucherCompare</div>
+        <label class="bc-toggle" title="Afficher / masquer les badges sur la page">
+          <input type="checkbox" id="badge-toggle" checked />
+          <span class="bc-toggle__track"></span>
+          <span class="bc-toggle__label">badges</span>
+        </label>
+      </div>
+      <div class="bc-tagline" id="tagline">Cours marché RNM · FranceAgriMer (stade Détail)</div>
+    </header>
+
+    <main>
+      <section class="bc-controls" id="controls" hidden>
+        <input
+          id="search"
+          class="bc-search"
+          type="search"
+          placeholder="Rechercher (entrecôte, magret, shop...)"
+          autocomplete="off"
+        />
+      </section>
+      <section class="bc-summary" id="summary" hidden></section>
+      <section class="bc-list" id="list"></section>
+      <p class="bc-empty" id="empty" hidden></p>
+      <p class="bc-no-results" id="no-results" hidden>Aucun résultat pour ces filtres.</p>
+      <section class="bc-actions" id="actions" hidden>
+        <button id="clear-catalog" class="bc-btn">🗑 Vider le catalogue</button>
+      </section>
+    </main>
+
+    <footer class="bc-footer">
+      <span id="footer-info">—</span>
+    </footer>
+
+    <script src="lib/matcher.js"></script>
+    <script src="lib/classify.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

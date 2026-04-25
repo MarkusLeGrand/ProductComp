@@ -1,0 +1,186 @@
+/* Les custom elements Shopify sont 'inline' par défaut, on force block + relative
+   pour que le badge se positionne correctement par-dessus la carte. */
+product-card {
+  display: block !important;
+  position: relative !important;
+}
+
+/* Toggle "afficher les badges" depuis le popup : on désactive tout
+   (badge + outline) sans détruire les classes/DOM (le toggle est immédiat). */
+html.bc-badges-hidden .bc-badge { display: none !important; }
+html.bc-badges-hidden .bc-product--good,
+html.bc-badges-hidden .bc-product--fair,
+html.bc-badges-hidden .bc-product--high,
+html.bc-badges-hidden .bc-product--neutral {
+  outline: none !important;
+}
+
+/* Outline coloré sur la carte produit pour repérer immédiatement
+   le verdict, même quand le badge n'est pas dans le viewport. */
+.bc-product--good {
+  outline: 3px solid #6b8e23 !important;
+  outline-offset: -3px;
+}
+.bc-product--fair {
+  outline: 3px solid #b8860b !important;
+  outline-offset: -3px;
+}
+.bc-product--high {
+  outline: 3px solid #8b1a1a !important;
+  outline-offset: -3px;
+}
+.bc-product--neutral {
+  outline: 2px dashed #888 !important;
+  outline-offset: -2px;
+}
+
+.bc-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 99999;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  padding: 7px 11px;
+  background: #f5ecd9;
+  color: #2a1a10;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 2px solid #2a1a10;
+  border-radius: 2px;
+  box-shadow: 3px 3px 0 #2a1a10;
+  pointer-events: auto;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.bc-badge__main {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.bc-badge__deltas {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  opacity: 0.85;
+  line-height: 1.35;
+}
+
+.bc-badge__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid #2a1a10;
+  flex-shrink: 0;
+}
+
+.bc-badge--good .bc-badge__dot { background: #6b8e23; }
+.bc-badge--fair .bc-badge__dot { background: #b8860b; }
+.bc-badge--high .bc-badge__dot { background: #8b1a1a; }
+.bc-badge--neutral .bc-badge__dot { background: #888; }
+
+.bc-badge--good { background: #d8e4a8; }
+.bc-badge--fair { background: #f5ecd9; }
+.bc-badge--high { background: #f0c5c5; }
+.bc-badge--neutral { background: #ececec; opacity: 0.92; }
+
+/* ===== Panel récap PANIER ===== */
+.bc-cart-panel {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 999999;
+  width: 280px;
+  background: #f5ecd9;
+  color: #2a1a10;
+  font-family: "Courier New", Courier, monospace;
+  border: 2.5px solid #2a1a10;
+  border-radius: 2px;
+  box-shadow: 4px 4px 0 #2a1a10;
+  padding: 14px 16px 16px;
+  box-sizing: border-box;
+}
+.bc-cart-panel__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.bc-cart-panel__logo {
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b1a1a;
+}
+.bc-cart-panel__close {
+  font-size: 18px;
+  background: none;
+  border: 1.5px solid #2a1a10;
+  width: 22px; height: 22px;
+  line-height: 0;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 0;
+}
+.bc-cart-panel__close:hover { background: #8b1a1a; color: #fff; }
+.bc-cart-panel__title {
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1.5px dashed #2a1a10;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.bc-cart-panel__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.bc-cart-panel__stat {
+  border: 1.5px solid #2a1a10;
+  background: #fff;
+  padding: 8px 6px;
+  text-align: center;
+}
+.bc-cart-panel__stat--total {
+  grid-column: span 2;
+  background: #2a1a10;
+  color: #f5ecd9;
+}
+.bc-cart-panel__num {
+  display: block;
+  font-size: 18px;
+  font-weight: 900;
+  line-height: 1;
+}
+.bc-cart-panel__lab {
+  display: block;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+.bc-cart-panel__warn {
+  margin-top: 10px;
+  font-size: 10px;
+  font-style: italic;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+/* Le toggle "badges off" cache aussi le panel cart */
+html.bc-badges-hidden .bc-cart-panel { display: none !important; }

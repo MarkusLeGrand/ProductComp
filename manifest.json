@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "BoucherCompare",
+  "version": "0.2.0",
+  "description": "Compare les prix d'une boucherie en ligne aux cours du marché RNM (FranceAgriMer).",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "BoucherCompare"
+  },
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": [
+    "https://maison-lascours.fr/*",
+    "https://www.maison-lascours.fr/*",
+    "https://pourdebon.com/*",
+    "https://www.pourdebon.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://maison-lascours.fr/*",
+        "https://www.maison-lascours.fr/*",
+        "https://pourdebon.com/*",
+        "https://www.pourdebon.com/*"
+      ],
+      "js": [
+        "lib/matcher.js",
+        "lib/badge.js",
+        "lib/classify.js",
+        "sites/lascours.js",
+        "sites/pourdebon.js",
+        "content.js"
+      ],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["data/reference_prices.json"],
+      "matches": [
+        "https://maison-lascours.fr/*",
+        "https://www.maison-lascours.fr/*",
+        "https://pourdebon.com/*",
+        "https://www.pourdebon.com/*"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+
+# Réglages locaux
+.claude/settings.local.json
+.vscode/
+.DS_Store
+node_modules/

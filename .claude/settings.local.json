@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "WebFetch(domain:maisonlascours.fr)",
-      "WebFetch(domain:www.maisonlascours.fr)"
-    ]
-  }
-}
